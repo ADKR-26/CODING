@@ -1,0 +1,21 @@
+class Solution {
+    public int mostWordsFound(String[] sentences) {
+        
+        int n = sentences.length;
+        String[] words;
+        String ans;
+        int count = 0;
+        int[] arr = new int[n];
+        for(int i=0;i<n;i++)
+        {
+            ans = sentences[i];
+            words = ans.split("\\s+");
+            count = words.length;
+            arr[i] = count;
+        }
+        Arrays.sort(arr);
+        int len = arr.length;
+        int count1 = arr[len-1];
+        return count1;
+    }
+}
