@@ -1,0 +1,70 @@
+<h3>
+
+Given a string s, return the longest 
+palindromic
+ 
+substring
+ in s.
+
+ 
+
+Example 1:
+
+Input: s = "babad"
+Output: "bab"
+Explanation: "aba" is also a valid answer.
+Example 2:
+
+Input: s = "cbbd"
+Output: "bb"
+ 
+
+Constraints:
+
+1 <= s.length <= 1000
+s consist of only digits and English letters.
+
+</h3>
+
+<p>
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+
+var longestPalindrome = function(s) {
+    // console.log(s.length)
+   if(s.length < 1 || s === null) return "";
+
+   let longest = "";
+
+   for(let i=0;i<s.length;i++) {
+
+       let oddPalindrome = expandFomCenter(s, i, i);
+       let evenPalindrome = expandFomCenter(s, i-1, i);
+
+       if(oddPalindrome.length > longest.length) {
+           longest = oddPalindrome
+       }
+
+       if(evenPalindrome.length > longest.length) {
+           longest = evenPalindrome
+       }
+    //    console.log(longest);
+   }
+    return longest;
+};
+
+function expandFomCenter(s, left, right) {
+    let i = 0;
+
+    while(s[left - i] && s[left - i] === s[right + i] ) {
+        i++;
+    }
+    i--;
+
+    return s.slice(left - i, right + i + 1);
+}
+
+</p>
