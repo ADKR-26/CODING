@@ -1,1 +1,94 @@
+QUESTION- 
+
+Given a string s, find the length of the longest 
+substring
+ without repeating characters.
+
+ 
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+
+////////////////////////////////////////////////////////
+
+
+SOLUTION - 
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+
+    let newSet = new Set([]);
+    let left = 0;
+    let right = 0;
+    let longest = 0;
+
+    //using sliding window
+
+    while(right < s.length) {   // will run till end of string
+        let data = s[right];    
+        if(!newSet.has(data)) {
+            newSet.add(data);
+            longest = Math.max(longest, right-left+1);
+            right = right + 1;
+        }
+        else {
+            while(s[left] !== data) {
+                newSet.delete(s[left]);
+                left = left + 1;
+            }
+            newSet.delete(data);
+            left++;
+        }
+    }
+
+    // console.log(newSet);
+
+    return longest;
+};
+
+// Example
+// a b c a b c b b
+// let left = a and right = a too
+// at first compare it by adding it to the set, if not present right will shift by 1
+// if present then left will shift till it passes the repeating character
+// eg 
+// a b c a b c b b
+
+// left a
+
+// right -> a -> b -> c -> a
+
+// now left would be shifted till a, means 
+
+// a-> b -> c -> a
+// now left is a
+
+// and then this preocess continues....
+
+
+
+
+
+
+
+
+
+
 
