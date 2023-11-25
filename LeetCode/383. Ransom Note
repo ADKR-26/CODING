@@ -1,0 +1,15 @@
+/**
+ * @param {string} ransomNote
+ * @param {string} magazine
+ * @return {boolean}
+ */
+var canConstruct = function (ransomNote, magazine) {
+
+    // replacing every chararcter from ransomNote with empty data, only if it is present in magazine
+  for (const char of magazine) {
+    ransomNote = ransomNote.replace(char, "");
+  }
+  
+  if (!ransomNote) return true;
+  else return false;
+};
