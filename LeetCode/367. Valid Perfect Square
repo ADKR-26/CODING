@@ -1,0 +1,16 @@
+/**
+ * @param {number} num
+ * @return {boolean}
+ */
+var isPerfectSquare = function(num) {
+
+    const data = Math.sqrt(num);
+    
+    if(data % 1 === 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+};
